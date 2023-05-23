@@ -1,0 +1,43 @@
+.Inventory {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
+
+.Card {
+    border: 1px solid black;
+    width: 200px;
+    height: 260px;
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.ImageContainer {
+    width: 180px;
+    height: 160px;
+    border: 1px solid black;
+}
+
+.Image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.NameContainer {
+
+}
+
+.TextContainer {
+    font-size: 14px;
+}
