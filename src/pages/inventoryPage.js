@@ -1,15 +1,21 @@
 import React from "react"
-import { db } from "../firebase"
+import { db, storage } from "../firebase"
 import { addDoc, collection } from "firebase/firestore"
+import { getDownloadURL, ref } from "firebase/storage"
 
 const InventoryPage = () => {
 
 	const cardList = []
 
-	const setCards = () => {
+	// db에 카드 추가용 매크로
+	const setCards = async () => {
+		const imageRef = ref(storage, "tmp.jpeg")
+		const imageURL = await getDownloadURL(imageRef)
+
 		addDoc(collection(db, "Cards"), {
 			name: "TEST",
-			text: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+			text: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
+			image: imageURL
 		}).then((docRef) => {
 			console.log(docRef.id)
 		})
@@ -18,7 +24,7 @@ const InventoryPage = () => {
 	return (
 		<div>
             Inventory
-			<button onClick ={setCards}>test</button>
+			{/* <button onClick ={setCards}>Add Card</button> */}
 		</div>
 	)
 }
