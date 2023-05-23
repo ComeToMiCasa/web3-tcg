@@ -1,12 +1,13 @@
-import React, { useEffect } from "react"
-import logo from "./logo.svg"
-import "./App.css"
+import React from "react"
 import InventoryPage from "./pages/inventoryPage"
+import "./App.css"
 
-function App() {
+const App = () => {
+
+
 	return (
 		<div className="App">
-			<InventoryPage/>
+			<InventoryPage />
 		</div>
 	)
 }
