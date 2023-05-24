@@ -7,8 +7,6 @@ import MarketPage from "./pages/marketPage"
 import HomePage from "./pages/homePage"
 
 const App = () => {
-
-
 	return (
 		<div className="App">
 			<Header />
