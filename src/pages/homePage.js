@@ -1,16 +1,21 @@
 import React from "react"
-import Web3 from 'web3'
+import Web3 from "web3"
+import { useState} from "react"
 
 const HomePage = () => {
-
+	const [getError, setError] = useState('')
 	let web3
-	const connectether = () => {
+	const connectether = async () => {
 		if(typeof window !== "undefined" && typeof window.ethereum !== "undefined"){
-			window.ethereum.request({method : "eth_requestAccounts"})
-			web3 = new Web3(window.ethereum)
+			try {
+				await window.ethereum.request({method : "eth_requestAccounts"})
+				web3 = new Web3(window.ethereum)
+			} catch(err) {
+				setError(err.message)
+			}
 		}
 		else {
-			console.log("Metamask not installed");
+			setError("Metamask not installed");
 		}
 	}
 
@@ -19,6 +24,9 @@ const HomePage = () => {
             home
 			<div>
 				<button onClick={connectether}>Connect to blockchain</button>
+			</div>
+			<div>
+				<p>{getError}</p>
 			</div>
 		</div>
 	)
