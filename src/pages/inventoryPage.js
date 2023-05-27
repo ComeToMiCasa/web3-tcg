@@ -4,6 +4,7 @@ import { addDoc, collection, getDocs, query } from "firebase/firestore"
 import { getDownloadURL, ref } from "firebase/storage"
 import Card from "../components/card"
 import "../styles/card.css"
+import CardPopup from "../components/cardPopup"
 
 const InventoryPage = () => {
 
@@ -29,19 +30,29 @@ const InventoryPage = () => {
 
 		const querySnapshot = await getDocs(q)
 		const cards = querySnapshot.docs.map((docSnapshot) => {
+			const id = docSnapshot.id
 			const { name, text, image } = docSnapshot.data()
-			return { name, text, image }
+			return { id, name, text, image }
 		})
 		setCards(cards)
 	}
 
-	useEffect(() => {
-		getCards()
-	}, [])
+	const [isPopupVisible, setIsPopupVisible] = useState(false)
+	const [popupCard, setPopupCard] = useState(null)
+
+	const togglePopupOn = (num) => {
+		setIsPopupVisible(true)
+		setPopupCard(num)
+	}
+
+	const togglePopupOff = () => {
+		setIsPopupVisible(false)
+	}
+
+	useEffect(() => { getCards() }, [])
 
 	const cardList = cards.map((card, i) => {
-		console.log("card", card)
-		return (<Card {...card} key={i} />)
+		return (<Card {...card} handleClick={() => togglePopupOn(i)} large={false} key={i} />)
 	})
 
 	return (
@@ -50,6 +61,7 @@ const InventoryPage = () => {
 				inventory
 			</div>
 			{cardList}
+			{isPopupVisible ? <CardPopup cardInfo={cards[popupCard]} handleToggleOff={togglePopupOff}/> : <div></div>}
 		</div>
 	)
 }

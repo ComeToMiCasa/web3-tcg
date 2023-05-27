@@ -9,6 +9,8 @@ import LoginPage from "./pages/loginPage"
 import { onAuthStateChanged } from "firebase/auth"
 import auth from "./auth"
 import { userContext } from "./context"
+import { doc, setDoc } from "firebase/firestore"
+import { db } from "./firebase"
 
 const App = () => {
 
@@ -17,9 +19,11 @@ const App = () => {
 
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, (user) => {
+			// console.log(user)
 			if (user) {
 				setUid(user.uid)
 				setUsername(user.displayName)
+				
 			} else {
 				setUid(null)
 				setUsername(null)

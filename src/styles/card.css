@@ -23,6 +23,12 @@
     padding-bottom: 10px;
 }
 
+.Large {
+    scale: 1.8;
+    position: relative;
+    /* left: 60px; */
+}
+
 .Card:hover {
     border: 3px solid black;
     cursor: pointer;
@@ -47,4 +53,51 @@
 
 .TextContainer {
     font-size: 14px;
+}
+
+.CardPopup {
+    width: 800px;
+    height: 600px;
+    border: 1px solid black;
+    background-color: white;
+    position: fixed;
+    left: calc(100%-400px);
+    top: 200px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.CloseButton {
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: white;
+    position: relative;
+    left: 788px;
+    top: -300px;
+    cursor: pointer;
+}
+
+.CardContainer {
+    position: relative;
+    left: -100px;
+}
+
+.CardForm {
+    position: relative;
+    right: 50px;
+}
+
+.DealContainer {
+    border: 1px black solid;
+    width: 240px;
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
 }
