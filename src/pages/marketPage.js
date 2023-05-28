@@ -1,13 +1,18 @@
 import { collection, doc, getDoc, getDocs, query } from "firebase/firestore"
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { db } from "../firebase"
 import Card from "../components/card"
 import "../styles/card.css"
+import { userContext } from "../context"
+import Web3 from "web3"
+import { CONTRACT_ABI, CONTRACT_ADDRESS } from "../contracts/config"
 
 
 const MarketPage = () => {
 
 	const [deals, setDeals] = useState([])
+
+	const { account } = useContext(userContext)
 
 	const getDeals = async () => {
 		const marketRef = collection(db, "Market")
@@ -47,10 +52,24 @@ const MarketPage = () => {
 		)
 	})
 
+	// const addCardToContract = async () => {
+	// 	const web3 = new Web3(window.ethereum)
+	// 	// await window.ethereum.enable()
+
+	// 	const CardContract = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS)
+
+	// 	await CardContract.methods.addCard(account, "test1", 16).send({ from: account })
+	// }
+
+
 	return (
-		<div className="Inventory">
-			{dealList}
+		<div>
+			{account}
+			<div className="Inventory">
+				{dealList}
+			</div>
 		</div>
+		
 	)
 }
 

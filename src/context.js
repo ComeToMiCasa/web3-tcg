@@ -5,4 +5,8 @@ export const userContext = createContext({
 	setUsername: () => {},
 	uid: null,
 	setUid: () => {},
+	account: null,
+	setAccount: () => {},
+	web3: null,
+	setWeb3: () => {}
 })
