@@ -3,13 +3,13 @@ import Web3 from "web3"
 import { useState} from "react"
 
 const HomePage = () => {
-	const [getError, setError] = useState('')
 	let web3
+	const [getError, setError] = useState('')
 	const connectether = async () => {
 		if(typeof window !== "undefined" && typeof window.ethereum !== "undefined"){
 			try {
 				await window.ethereum.request({method : "eth_requestAccounts"})
-				web3 = new Web3(window.ethereum)
+				global.web3 = new Web3(window.ethereum)
 			} catch(err) {
 				setError(err.message)
 			}
