@@ -47,7 +47,7 @@ const MyPage = () => {
 
 		const CardContract = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS)
 		idList.forEach((id) => {
-			CardContract.methods.addCard(account, id, Math.floor(Math.random() * 3)).send({ from: account })
+			CardContract.methods.addCard(account, id, Math.floor(Math.random() * 5)).send({ from: account })
 		})
 	}
 

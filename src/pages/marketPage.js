@@ -119,6 +119,8 @@ const DealPopup = ({ dealInfo, handleToggleOff }) => {
 
 		await CardContract.methods.handleTrade(seller.account, account, item, buyCnt).send({ from: account })
 		await TokenContract.methods.transfer(seller.account, price * buyCnt).send({ from: account })
+
+		handleToggleOff()
 	}
 
 
