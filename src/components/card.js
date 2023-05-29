@@ -4,7 +4,7 @@ import "../styles/card.css"
 const Card = ({ id, name, text, image, cnt, handleClick, large }) => {
 
 	return (
-		<div className={large ? "Card Large" : "Card"} onClick={large ? () => {} : handleClick}>
+		<div className={large ? "Card Large" : "Card Small"} onClick={large ? () => {} : handleClick}>
 			<div className="CountContainer">
 				{cnt}
 			</div>

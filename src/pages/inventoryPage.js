@@ -31,13 +31,22 @@ const InventoryPage = () => {
 
 	// contract에 카드 추가용
 	// 웬만하면 쓰지 말 것
-	const addCardToChain = () => {
+	const addCardsToChain = () => {
 		const web3 = new Web3(window.ethereum)
 
 		const CardContract = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS)
 		idList.forEach((id) => {
 			CardContract.methods.addCard(account, id, Math.floor(Math.random() * 3)).send({ from: account })
 		})
+	}
+
+	const addCardToContract = async () => {
+		const web3 = new Web3(window.ethereum)
+		// await window.ethereum.enable()
+
+		const CardContract = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS)
+
+		await CardContract.methods.addCard(account, idList[0], 16).send({ from: account })
 	}
 
 	const getCards = async () => {
@@ -112,12 +121,14 @@ const InventoryPage = () => {
 		return (<Card {...card} handleClick={() => togglePopupOn(i)} large={false} key={i} />)
 	})
 
+	
+
 	return (
 		<div className="Inventory">
 			<div style={{width: 1500}}>
 				inventory
 			</div>
-			{/* <button onClick={addCardToChain}>getinven</button> */}
+			{/* <button onClick={addCardToContract}>getinven</button> */}
 			{cardList}
 			{isPopupVisible ? <CardPopup cardInfo={cards[popupCard]} handleToggleOff={togglePopupOff}/> : <div></div>}
 		</div>

@@ -9,18 +9,21 @@ const CardPopup = ({ cardInfo, handleToggleOff }) => {
 
 	const { id } = cardInfo
 	
-	const { uid, username } = useContext(userContext)
+	const { uid, username, account } = useContext(userContext)
 	
 	const [price, setPrice] = useState(null)
+	const [cnt, setCnt] = useState(null)
 
 	const handleSell = () => {
 		addDoc(collection(db, "Market"), {
 			seller: {
 				uid,
-				username
+				username,
+				account
 			},
 			item: id,
-			price
+			price,
+			cnt
 		}).then((docRef) => {
 			// console.log(docRef.id)
 			handleToggleOff()
@@ -40,6 +43,11 @@ const CardPopup = ({ cardInfo, handleToggleOff }) => {
 					placeholder="가격"
 					value={price}
 					onChange={(e) => setPrice(e.target.value)}
+				/>
+				<input
+					placeholder="개수"
+					value={cnt}
+					onChange={(e) => setCnt(e.target.value)}
 				/>
 				<button onClick={handleSell}>
 					판매

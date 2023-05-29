@@ -29,7 +29,7 @@
     /* left: 60px; */
 }
 
-.Card:hover {
+.Small:hover {
     border: 3px solid black;
     cursor: pointer;
     margin: 18px;
@@ -89,11 +89,14 @@
 
 .CardForm {
     position: relative;
+    width: 200px;
     right: 50px;
+    display: flex;
+    flex-direction: column;
 }
 
 .DealContainer {
-    border: 1px black solid;
+    /* border: 1px black solid; */
     width: 240px;
     height: 380px;
     display: flex;
