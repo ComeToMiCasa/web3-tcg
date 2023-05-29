@@ -5,7 +5,7 @@ import Card from "../components/card"
 import "../styles/card.css"
 import { userContext } from "../context"
 import Web3 from "web3"
-import { CONTRACT_ABI, CONTRACT_ADDRESS } from "../contracts/config"
+import { CONTRACT_ABI, CONTRACT_ADDRESS, TOKEN_CONTRACT_ABI, TOKEN_CONTRACT_ADDRESS } from "../contracts/config"
 
 
 const MarketPage = () => {
@@ -57,7 +57,7 @@ const MarketPage = () => {
 				Price: {deal.price}
 				</div>
 				<div>
-				Seller: {deal.seller.username}
+				Seller: {deal.seller.account}
 				</div>
 			</div>
 		)
@@ -100,7 +100,7 @@ const DealPopup = ({ dealInfo, handleToggleOff }) => {
 
 	const handleBuy = async () => {
 		const leftover = cnt - buyCnt
-		if (leftover == 0) {
+		if (leftover === 0) {
 			deleteDoc(doc(db, "Market", dealID))
 		} else if (leftover > 0) {
 			console.log(leftover)
@@ -115,8 +115,10 @@ const DealPopup = ({ dealInfo, handleToggleOff }) => {
 		const web3 = new Web3(window.ethereum)
 
 		const CardContract = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS)
+		const TokenContract = new web3.eth.Contract(TOKEN_CONTRACT_ABI, TOKEN_CONTRACT_ADDRESS)
 
 		await CardContract.methods.handleTrade(seller.account, account, item, buyCnt).send({ from: account })
+		await TokenContract.methods.transfer(seller.account, price * buyCnt).send({ from: account })
 	}
 
 

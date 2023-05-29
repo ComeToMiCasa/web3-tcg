@@ -32,6 +32,11 @@ const Header = () => {
                     Market
 					</div>
 				</Link>
+				<Link to="/mypage" style={{textDecoration: "none", color: "inherit"}}>
+					<div className="HeaderButton">
+                    Mypage
+					</div>
+				</Link>
 				{uid ? 
 					(<div className="HeaderButton"
 						onClick={handleSignOut}
