@@ -124,8 +124,10 @@ const DealPopup = ({ dealInfo, handleToggleOff }) => {
 		const CardContract = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS)
 		const TokenContract = new web3.eth.Contract(TOKEN_CONTRACT_ABI, TOKEN_CONTRACT_ADDRESS)
 
-		await CardContract.methods.handleTrade(seller.account, account, item, buyCnt).send({ from: account })
-		await TokenContract.methods.transfer(seller.account, price * buyCnt).send({ from: account })
+		await Promise.all([
+			CardContract.methods.handleTrade(seller.account, account, item, buyCnt).send({ from: account }),
+			TokenContract.methods.transfer(seller.account, price * buyCnt).send({ from: account })
+		])
 
 		handleToggleOff()
 	}
