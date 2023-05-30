@@ -57,7 +57,14 @@ const MarketPage = () => {
 				Price: {deal.price}
 				</div>
 				<div>
-				Seller: {deal.seller.account}
+				Seller: {deal.seller.username}
+				</div>
+				<div style={{
+					overflowWrap: "break-word",
+					width: 200,
+					marginBottom: 50
+				}}>
+					{deal.seller.account}
 				</div>
 			</div>
 		)
@@ -103,7 +110,7 @@ const DealPopup = ({ dealInfo, handleToggleOff }) => {
 		if (leftover === 0) {
 			deleteDoc(doc(db, "Market", dealID))
 		} else if (leftover > 0) {
-			console.log(leftover)
+			// console.log(leftover)
 			updateDoc(doc(db, "Market", dealID), {
 				cnt: leftover
 			})
