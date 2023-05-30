@@ -62,7 +62,7 @@ const InventoryPage = () => {
 		if(idList.length !== 0 && account !== undefined) {
 			const res = await getUserInventory()
 			const zippedList = idList.map((id, i) => [id, Number(res[i])])
-			const filteredList = zippedList.filter((items) => items[1] != 0)
+			const filteredList = zippedList.filter((items) => items[1] !== 0)
 			
 			const cards = await Promise.all(filteredList.map(
 				async (items) => {

@@ -71,6 +71,13 @@ const MyPage = () => {
 		setBalance(balance)
 	}
 
+	const getTokens = async () => {
+		const web3 = new Web3(window.ethereum)
+		const TokenContract = new web3.eth.Contract(TOKEN_CONTRACT_ABI, TOKEN_CONTRACT_ADDRESS)
+
+		await TokenContract.methods.mint(account, 10).send({ from: account })
+	}
+
 	useEffect(() => { 
 		if(account != null) {
 			console.log(account)
@@ -89,7 +96,7 @@ const MyPage = () => {
 			<button onClick={connectWallet}>Connect to Metamask</button>
 			<button onClick={addCardToContract}>Get One Card</button>
 			<button onClick={addCardsToChain}>Get Cards</button>
-
+			<button onClick={getTokens}>Get Tokens</button>
 			<div>
 			address: {account}
 

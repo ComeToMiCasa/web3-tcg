@@ -17,7 +17,7 @@ const Header = () => {
 		<div className="Header">
 			<Link to="/" style={{textDecoration: "none", color: "inherit"}}>
 				<div className="HeaderLogo">
-                (대충 로고)
+					WEB3-TCG
 				</div>
 			</Link>
 			

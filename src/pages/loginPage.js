@@ -18,7 +18,7 @@ const LoginPage = () => {
 				const uid = user.uid 
 				const username = user.displayName
 
-				if(user.metadata.creationTime == user.metadata.lastSignInTime) {
+				if(user.metadata.creationTime === user.metadata.lastSignInTime) {
 					console.log(user.metadata.creationTime, user.metadata.lastSignInTime)
 					setDoc(doc(db, "Users", uid), {
 						uid,
